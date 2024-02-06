@@ -1,23 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [Count, newCountmethod] = useState(0);
+  function decHandler() {
+    newCountmethod(Count-1);
+    // if (Count < 0) {
+    //   Count = 0;
+    //   newCountmethod(Count)
+    // }
+  }
+  function incHandler() {
+    newCountmethod(Count+1);
+    // if (Count > 20) {
+    //   Count = 0;
+    //   newCountmethod(Count)
+    // }
+  }
+  function resetHandler() {
+    newCountmethod(0)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="main_container">
+        <div>Increment & Decrement</div>
+        <div>
+          <button onClick={decHandler}>-</button>
+          <div>{Count}</div>
+          <button onClick={incHandler}>+</button>
+        </div>
+        <button onClick={resetHandler}>reset</button>
+      </div>
     </div>
   );
 }
